@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/user";
 import { connectToDB } from "@/lib/database";
 
+connectToDB().catch((err) => console.error("Failed to connect to DB", err));
+
 const authOptions = {
   providers: [
     GoogleProvider({
@@ -12,24 +14,29 @@ const authOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await User.findOne({
-        email: session.user?.email ?? "",
-      });
+      try {
+        const sessionUser = await User.findOne({
+          email: session.user?.email ?? "",
+        }).exec();
 
-      if (!sessionUser) {
-        console.log("User not found in database");
+        if (!sessionUser) {
+          console.log("User not found in database");
+          return session;
+        }
+
+        if (session.user) {
+          session.user.id = sessionUser._id.toString();
+        }
+
+        return session;
+      } catch (error) {
+        console.error("Error in session callback: ", error.message);
         return session;
       }
-      if (session.user) {
-        session.user.id = sessionUser._id.toString();
-      }
-
-      return session;
     },
     async signIn({ profile }) {
       try {
-        await connectToDB();
-        const userExists = await User.findOne({ email: profile.email });
+        const userExists = await User.findOne({ email: profile.email }).exec();
 
         if (!userExists) {
           await User.create({
