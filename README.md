@@ -23,7 +23,7 @@ Promptopia is a `Next.js` application built on top of `React` and `MongoDB`. Wit
 
 ## 🌟 Demo
 
-Check out the live demo of Promptopia at [here]().
+Check out the live demo of Promptopia at [here](https://promptopia-sepia-five.vercel.app/).
 
 ## 🚀 Getting Started
 
