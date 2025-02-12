@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbav";
 import Providers from "./Providers";
 import { getSession } from "./auth";
-import "@/styles/globals.css";
+import "./globals.css";
 
 export const metadata = {
   title: "Promptopia",

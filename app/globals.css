@@ -8,9 +8,6 @@
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them!
 */
 
-/* * {
-  @apply outline outline-1 outline-red-500;
-} */
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -179,4 +176,13 @@
 
 .not-authenticated {
   @apply flex items-center justify-center w-full h-40 text-red-500 font-bold;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

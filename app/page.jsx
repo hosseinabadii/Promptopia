@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import SearchForm from "@/components/SearchForm";
 import Feed from "@/components/Feed";
-import FetchLoading from "@/components/FetchLoading";
+import PromptListSkeleton from "@/components/PromptListSkeleton";
 
 export default async function Home(props) {
   const searchParams = await props.searchParams;
@@ -19,7 +19,7 @@ export default async function Home(props) {
         discover, create and share creative prompts
       </p>
       <SearchForm />
-      <Suspense fallback={<FetchLoading />}>
+      <Suspense fallback={<PromptListSkeleton />}>
         <Feed search={search} />
       </Suspense>
     </section>

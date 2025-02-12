@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getSession } from "@/app/auth";
 import Profile from "@/components/Profile";
-import FetchLoading from "@/components/FetchLoading";
+import PromptListSkeleton from "@/components/PromptListSkeleton";
 import NotAuthorized from "@/components/NotAuthorized";
 
 export default async function ProfilePage() {
@@ -22,7 +22,7 @@ export default async function ProfilePage() {
       <p className="desc text-left">
         Welcome to your personalized profile page
       </p>
-      <Suspense fallback={<FetchLoading />}>
+      <Suspense fallback={<PromptListSkeleton />}>
         <Profile userId={user?.id} />
       </Suspense>
     </section>
