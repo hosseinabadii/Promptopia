@@ -1,22 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
-export default function Nav() {
-  const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
+export default function Navbar({ session }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);
-
-  useEffect(() => {
-    const setAuthProviders = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    };
-    setAuthProviders();
-  }, []);
 
   const handleSignOut = () => {
     setToggleDropDown(false);
@@ -60,19 +50,13 @@ export default function Nav() {
             </Link>
           </div>
         ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className="black_btn"
-                >
-                  Sign In
-                </button>
-              ))}
-          </>
+          <button
+            type="button"
+            onClick={() => signIn("google")}
+            className="black_btn"
+          >
+            Sign In
+          </button>
         )}
       </div>
 
@@ -115,19 +99,13 @@ export default function Nav() {
             )}
           </div>
         ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className="black_btn"
-                >
-                  Sign In
-                </button>
-              ))}
-          </>
+          <button
+            type="button"
+            onClick={() => signIn("google")}
+            className="black_btn"
+          >
+            Sign In
+          </button>
         )}
       </div>
     </nav>

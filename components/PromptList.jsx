@@ -1,13 +1,15 @@
+import { auth } from "@/auth";
 import PromptCard from "./PromptCard";
 
-export default function PromptList({ prompts }) {
+export default async function PromptList({ prompts }) {
+  const session = await auth();
   return (
     <>
       {prompts ? (
         prompts.length > 0 ? (
           <div className="prompt_layout">
             {prompts.map((prompt) => (
-              <PromptCard key={prompt._id} prompt={prompt} />
+              <PromptCard key={prompt._id} prompt={prompt} session={session} />
             ))}
           </div>
         ) : (

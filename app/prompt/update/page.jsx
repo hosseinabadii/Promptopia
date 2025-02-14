@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import { getPromptById } from "@/lib/database";
-import { getSession } from "@/app/auth";
+import { auth } from "@/auth";
 import { updatePromptAction } from "@/actions/prompt-actions";
 import Form from "@/components/From";
 import NotAuthorized from "@/components/NotAuthorized";
 
 export default async function UpdatePrompt(props) {
-  const session = await getSession();
+  const session = await auth();
   const user = session?.user;
   const searchParams = await props.searchParams;
   const promptId = searchParams.promptId;

@@ -61,16 +61,7 @@ To obtain the necessary environment variables, follow these steps:
 
 1. Create a [Google OAuth 2.0 client ID](https://console.cloud.google.com/apis/credentials) and set the authorized redirect URIs to `http://localhost:3000/api/auth/callback/google`.
 2. Create a [MongoDB Atlas cluster](https://www.mongodb.com/cloud/atlas) and create a user with read and write permissions.
-3. Create a `.env.local` file and add the following variables:
-
-```env
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-MONGODB_URI=your_mongodb_connection_string
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_URL_INTERNAL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret
-```
+3. Rename the `env.local.txt` file to `.env.local` and add variables to the file.
 
 ## 🔧 Running the Project
 

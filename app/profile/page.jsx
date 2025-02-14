@@ -1,11 +1,11 @@
 import { Suspense } from "react";
-import { getSession } from "@/app/auth";
+import { auth } from "@/auth";
 import Profile from "@/components/Profile";
 import PromptListSkeleton from "@/components/PromptListSkeleton";
 import NotAuthorized from "@/components/NotAuthorized";
 
 export default async function ProfilePage() {
-  const session = await getSession();
+  const session = await auth();
   const user = session?.user;
 
   if (!user) {

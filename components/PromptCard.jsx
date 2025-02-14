@@ -3,14 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
-export default function PromptCard({ prompt }) {
+export default function PromptCard({ prompt, session }) {
   const pathName = usePathname();
   const router = useRouter();
-  const { data: session } = useSession();
   const [copied, setCopied] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(false);
 

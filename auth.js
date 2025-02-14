@@ -1,17 +1,12 @@
-import { getServerSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
 import User from "@/models/user";
 import { connectToDB } from "@/lib/database";
 
 connectToDB().catch((err) => console.error("Failed to connect to DB", err));
 
-const authOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-    }),
-  ],
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  providers: [Google],
   callbacks: {
     async session({ session }) {
       try {
@@ -54,7 +49,4 @@ const authOptions = {
       }
     },
   },
-};
-
-const getSession = () => getServerSession(authOptions);
-export { authOptions, getSession };
+});
